@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ajburt/production-docker-node-workflow -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true ajburt/production-docker-node-workflow npm run test
